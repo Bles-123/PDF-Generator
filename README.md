@@ -46,7 +46,7 @@ src/test/java/com/assignment/pdfgen/
   controller/InvoicePdfControllerTest.java  MockMvc tests: endpoints, validation
 ```
 
-  !(docs/screenshots/cache-miss.png)
+  !(Screenshot 2026-09-08 174208.png)
 
 
 ## Running it

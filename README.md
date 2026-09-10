@@ -46,6 +46,9 @@ src/test/java/com/assignment/pdfgen/
   controller/InvoicePdfControllerTest.java  MockMvc tests: endpoints, validation
 ```
 
+  !(docs/screenshots/cache-miss.png)
+
+
 ## Running it
 
 Requires Java 17+ and Maven (with normal internet access to Maven Central —

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 24px;
+            color: #000;
+            font-size: 12px;
+        }
+        .invoice-box {
+            border: 2px solid #000;
+        }
+        .party-row {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .party-row td {
+            width: 50%;
+            vertical-align: top;
+            padding: 14px 16px;
+            border-bottom: 2px solid #000;
+        }
+        .party-row td.left {
+            border-right: 2px solid #000;
+        }
+        .party-label {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        table.items {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table.items th, table.items td {
+            border: 1px solid #000;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        table.items th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        table.items td.numeric, table.items th.numeric {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="invoice-box">
+    <table class="party-row">
+        <tr>
+            <td class="left">
+                <div class="party-label">Seller:</div>
+                <div th:text="${invoice.seller}">Seller Name</div>
+                <div th:text="${invoice.sellerAddress}">Seller Address</div>
+                <div>GSTIN: <span th:text="${invoice.sellerGstin}">SELLER_GSTIN</span></div>
+            </td>
+            <td>
+                <div class="party-label">Buyer:</div>
+                <div th:text="${invoice.buyer}">Buyer Name</div>
+                <div th:text="${invoice.buyerAddress}">Buyer Address</div>
+                <div>GSTIN: <span th:text="${invoice.buyerGstin}">BUYER_GSTIN</span></div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="items">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th class="numeric">Rate</th>
+            <th class="numeric">Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${invoice.items}">
+            <td th:text="${item.name}">Item</td>
+            <td th:text="${item.quantity}">Qty</td>
+            <td class="numeric" th:text="${#numbers.formatDecimal(item.rate, 1, 2)}">0.00</td>
+            <td class="numeric" th:text="${#numbers.formatDecimal(item.amount, 1, 2)}">0.00</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
